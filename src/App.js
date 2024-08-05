@@ -2,8 +2,10 @@ import "./App.css";
 import Alert from "./components/Alert";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
-import About from "./components/About";
+// import About from "./components/About";
 import React, { useState } from "react";
+import Footer from "./components/Footer";
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [mode, setmode] = useState("light");
@@ -12,18 +14,17 @@ function App() {
   const toggleMode = () => {
     if (mode === "light") {
       setmode("dark");
-      document.body.style.backgroundColor = "#495057";
-      document.body.style.backgroundColor=color;
+      
+      document.body.style.backgroundColor = "rgb(4,39,67)";
       showAlert("Dark mode enabled", "success");
     } else {
       setmode("light");
+      
       document.body.style.backgroundColor = "white";
       showAlert("Light mode enabled", "success");
     }
   };
-  const color=(color)=>{
-    document.body.style.backgroundColor=color;
-  }
+
 
   const showAlert = (message, type) => {
     setAlert({
@@ -34,18 +35,28 @@ function App() {
       setAlert(null);
     }, 1500);
   };
+
   return (
     <>
-      <Navbar
-        title="TextUtils"
-        aboutText="About"
-        mode={mode}
-        toggleMode={toggleMode}
-        color={color}
-      />
-      <Alert alert={alert} />
+      {/* <Router> */}
+        <Navbar
+          title="TextUtils"
+          aboutText="About"
+          mode={mode}
+          toggleMode={toggleMode}
+          
+        />
+        <Alert alert={alert} />
+        <div className="container my-3">
+          {/* <Routes> */}
+            {/* <Route path="/about" element={<About />} /> */}
+            {/* <Route path="/" element={<TextForm mode={mode} showAlert={showAlert} />} /> */}
+          {/* </Routes> */}
+        </div>
       <TextForm mode={mode} showAlert={showAlert} />
-      <About/>
+      <Footer  mode={mode} toggleMode={toggleMode}/>
+      {/* </Router> */}
+      {/* <About /> */}
     </>
   );
 }
