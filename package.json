@@ -1,6 +1,6 @@
 {
   "homepage": "https://singh-atithi.github.io/Text-Utils",
-  "name": "Text-Utils",
+  "name": "text-utils",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
