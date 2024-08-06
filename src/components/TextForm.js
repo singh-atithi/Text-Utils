@@ -33,8 +33,18 @@ export default function TextForm(props) {
   };
   const [text, setText] = useState("");
   const wordsCount = (word) => {
-    let arr = word.split(" ");
+    let arr = word.replace(/\s+/g, " ");
+    arr = arr.split(" ");
     return arr.length;
+  };
+  const countchar = () => {
+    let count = 0;
+    for (let i of text) {
+      if (i !== " ") {
+        count++;
+      }
+    }
+    return count;
   };
   const countNumberOfSentenceAndQuestions = (word) => {
     word = word.trim();
@@ -53,12 +63,32 @@ export default function TextForm(props) {
   let resultTxt = countNumberOfSentenceAndQuestions(text);
   return (
     <>
-      <div className={`container my-5 `}>
-        <h2
-          className={`text-${props.mode === "light" ? "dark" : "light"} my-4`}
+      <div className={`container my-3 `}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
         >
-          Enter text to analyze
-        </h2>
+          <h2
+            className={`text-${props.mode === "light" ? "dark" : "light"} my-4`}
+          >
+            Enter text to analyze
+          </h2>
+          <img
+            src={pngClipart}
+            alt="pic"
+            className=" "
+            style={{
+              cursor: "pointer",
+              width: "40px",
+              height: "40px",
+              marginTop: "10px",
+            }}
+            onClick={speak}
+          />{" "}
+        </div>
         <div className="fmb-3">
           <textarea
             className={`form-control text-${
@@ -75,45 +105,39 @@ export default function TextForm(props) {
             value={text}
           ></textarea>
         </div>
-        <div className="d-grid gap-2 d-md-block my-3">
+        <div>
           <button
-            className="btn btn-primary  mx-2 "
+            disabled={text.length === 0}
+            className="btn btn-primary my-2 mx-2 "
             onClick={handleUpClick}
           >
             Convert to Uppercase
           </button>
-          <button className="btn btn-primary mx-2" onClick={handleLoClick}>
-            Convert to Lowercase
-          </button>
-
           <button
-            className="btn btn-primary mx-2"
+            disabled={text.length === 0}
+            className="btn btn-primary my-2 mx-2"
             id="myBox"
             onClick={handlecopy}
           >
             Click to Copy
           </button>
+          <button
+            disabled={text.length === 0}
+            className="btn btn-primary my-2 mx-2"
+            onClick={handleLoClick}
+          >
+            Convert to Lowercase
+          </button>
 
           <button
-            className="btn btn-primary mx-2"
+            disabled={text.length === 0}
+            className="btn btn-primary my-2 mx-2"
             onClick={handleRemoveSpace}
           >
             Remove Space
           </button>
-          <img
-          src={pngClipart}
-          alt="pic"
-          className="my-3 mx-2 "
-          style={{
-            cursor: "pointer",
-            width: "50px",
-            height: "auto",
-          }}
-          onClick={speak}
-        />
         </div>
-        
-      </div>
+      </div>{" "}
       <div
         className={`container my-2 text-${
           props.mode === "light" ? "dark" : "light"
@@ -131,11 +155,11 @@ export default function TextForm(props) {
                 props.mode === "light" ? "dark" : "light"
               } my-4`}
             >{` No. of Words      : ${wordsCount(text) - 1}
- No. of Characters : ${text.length}
+ No. of Characters : ${countchar(text)}
  No. of Sentences  : ${resultTxt.totalsentences} 
- No. of Questions  : ${resultTxt.totalQuetions}               `}</pre>
+ No. of Questions  : ${resultTxt.totalQuetions}`}</pre>
           </div>
-        </div>
+        </div>{" "}
         <div className="container">
           <h2
             className={`text-${props.mode === "light" ? "dark" : "light"} my-4`}
@@ -147,11 +171,13 @@ export default function TextForm(props) {
               props.mode === "light" ? "dark" : "light"
             } my-4 p-5`}
           >
-            {text.length > 0
+            {text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length
               ? text
-              : "Enter something in the text box above to preview it here"}{" "}
+              : "Nothing To Preview Here"}
           </p>
-        </div>
+        </div>{" "}
       </div>
     </>
   );
