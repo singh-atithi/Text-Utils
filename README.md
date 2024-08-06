@@ -2,6 +2,37 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# TextUtils
+
+TextUtils is a web application built with React that provides various text manipulation and analysis features. It allows users to:
+
+- Convert text to uppercase or lowercase
+- Clear text and remove extra spaces
+- Copy text to the clipboard
+- Speak out the text
+- Count the number of words and characters
+- Switch between dark and light themes
+
+## Features
+
+- **Text Conversion**: Convert text to uppercase or lowercase.
+- **Text Manipulation**: Clear text and remove extra spaces.
+- **Clipboard Operations**: Copy text to the clipboard.
+- **Speech Synthesis**: Speak out the entered text.
+- **Text Statistics**: Count the number of words and characters.
+- **Theming**: Switch between dark and light themes.
+
+## Getting Started
+
+### Installation
+
+To get started with TextUtils, follow these steps:
+
+1. **Clone the Repository**:
+   ```sh
+   git clone https://github.com/singh-atithi/Text-Utils.git
+
+
 ## Available Scripts
 
 In the project directory, you can run:
