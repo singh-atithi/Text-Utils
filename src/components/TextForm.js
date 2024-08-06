@@ -37,15 +37,17 @@ export default function TextForm(props) {
     arr = arr.split(" ");
     return arr.length;
   };
-  const countchar = () => {
+  const countchar = (text) => {
     let count = 0;
     for (let i of text) {
-      if (i !== " ") {
+      // Check for spaces and new lines
+      if (i !== " " && i !== "\n") {
         count++;
       }
     }
     return count;
   };
+  
   const countNumberOfSentenceAndQuestions = (word) => {
     word = word.trim();
     const sentences = word.split(/[.!?]/);
