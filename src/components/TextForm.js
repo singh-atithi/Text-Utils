@@ -41,7 +41,7 @@ export default function TextForm(props) {
     let count = 0;
     for (let i of text) {
       // Check for spaces and new lines
-      if (i !== " " && i !== "\n") {
+      if (i !== " " && i !== "\n" && i !== "\r") {
         count++;
       }
     }
